@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 
 dotenv.config()
@@ -25,12 +26,20 @@ db.on('error', (error) => {
 // Init app
 const app = express()
 
+
 // Bring in models
 let Article = require('./models/article')
 
 // Load view engine
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
+
+// Body Parser Middleware
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 // Home Route
 app.get('/', (req, res) => {
@@ -51,6 +60,23 @@ app.get('/', (req, res) => {
 app.get('/articles/add', (req, res) => {
     res.render('add_article', {
         title: 'Add Article'
+    })
+})
+
+// Add submit POST Route
+app.post('/articles/add', (req, res) => {
+    let article = new Article()
+    article.title = req.body.title
+    article.author = req.body.author
+    article.body = req.body.body
+
+    article.save((error) => {
+        if (error) {
+            console.log(error)
+            return
+        } else {
+            res.redirect('/')
+        }
     })
 })
 
