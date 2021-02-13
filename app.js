@@ -92,6 +92,49 @@ app.post('/articles/add', (req, res) => {
     })
 })
 
+
+// Load Edit Form
+app.get("/article/edit/:id", (req, res) => {
+    Article.findById(req.params.id, (error, article) => {
+        res.render('edit_article', {
+            title: "Modifier l'article",
+            article
+        })
+    })
+})
+
+
+// Update submit POST Route
+app.post('/articles/edit/:id', (req, res) => {
+    let article = {}
+    article.title = req.body.title
+    article.author = req.body.author
+    article.body = req.body.body
+
+    let query = { _id: req.params.id }
+
+    Article.updateOne(query, article, (error) => {
+        if (error) {
+            console.log(error)
+            return
+        } else {
+            res.redirect('/')
+        }
+    })
+})
+
+
+app.delete('/article/:id', (req, res) => {
+    let query = { _id: req.params.id }
+
+    Article.remove(query, function (err) {
+        if (err) {
+            console.log(err)
+        }
+        res.send('Success')
+    })
+})
+
 // Start Server
 app.listen(3000, () => {
     console.log('Server running on http://127.0.0.1:3000')
