@@ -32,7 +32,10 @@ router.post('/add',
             // return res.status(400).json({ errors: errors.array() });
             res.render('add_article', {
                 title: 'Ajouter un article',
-                errors: errors.array()
+                errors: errors.array(),
+                title: req.body.title,
+                author: req.body.author,
+                body: req.body.body,
             })
         } else {
             let article = new Article()

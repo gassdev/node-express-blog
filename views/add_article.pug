@@ -5,11 +5,11 @@ block content
     form(action="/articles/add", method="POST")
         #form-group
             label(for="title") Titre:
-            input.form-control(name="title", type="text")
+            input.form-control(name="title", type="text", value=title)
         #form-group
             label(for="author") Auteur:
-            input.form-control(name="author", type="text")
+            input.form-control(name="author", type="text", value=author)
         #form-group
             label(for="body") Contenu:
-            textarea.form-control(name="body")
+            textarea.form-control(name="body")=body
         input.my-2.btn.btn-primary(type="submit", value="Valider")
