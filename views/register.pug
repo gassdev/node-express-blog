@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1 Inscription
+    form(action="/users/register", method="POST")
+        #form-group
+            label Nom:
+            input.form-control(name="name", type="text", value=name)
+        #form-group
+            label Email:
+            input.form-control(name="email", type="text", value=email)
+        #form-group
+            label Pseudo:
+            input.form-control(name="username", type="text", value=username)
+        #form-group
+            label Mot de Passe:
+            input.form-control(name="password", type="password")
+        #form-group
+            label Confirmation Mot de Passe:
+            input.form-control(name="password2", type="password")
+        input.my-2.btn.btn-primary(type="submit", value="Valider")

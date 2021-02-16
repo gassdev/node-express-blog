@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 Connexion
+    form(action="/users/login", method="POST")
+        #form-group
+            label Pseudo:
+            input.form-control(name="username", type="text", value=username)
+        #form-group
+            label Mot de Passe:
+            input.form-control(name="password", type="password")
+        input.my-2.btn.btn-primary(type="submit", value="Valider")

@@ -9,6 +9,7 @@
   "author": "Gassdev",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bower": "^1.8.12",
     "connect-flash": "^0.1.1",
@@ -19,6 +20,8 @@
     "express-validator": "^6.9.2",
     "mongoose": "^5.11.15",
     "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.0"
   }
 }
