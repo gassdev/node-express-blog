@@ -2,14 +2,16 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 const { body, validationResult } = require('express-validator')
 const flash = require('connect-flash')
 const session = require('express-session')
+const passport = require('passport')
+const config = require('./config/database')
 
-dotenv.config()
+// dotenv.config()
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(config.database, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -62,6 +64,17 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Passport Config
+require('./config/passport')(passport)
+// Passport Middleware
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+app.get('*', (req, res, next) => {
+    res.locals.user = req.user || null
+    next()
+})
 
 
 // Home Route

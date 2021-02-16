@@ -33,7 +33,7 @@ router.post('/add',
             res.render('add_article', {
                 title: 'Ajouter un article',
                 errors: errors.array(),
-                title: req.body.title,
+                article_title: req.body.title,
                 author: req.body.author,
                 body: req.body.body,
             })

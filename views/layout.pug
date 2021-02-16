@@ -18,10 +18,14 @@ html
               li.nav-item
                 a.nav-link(href='/articles/add') Ajouter un article
             ul.navbar-nav
-              li.nav-item
-                a.nav-link(href="/users/register") Inscription
-              li.nav-item
-                a.nav-link(href="/users/login") Connexion
+              if user
+                li.nav-item
+                  a.nav-link(href="/users/logout") Déconnexion
+              else
+                li.nav-item
+                  a.nav-link(href="/users/register") Inscription
+                li.nav-item
+                  a.nav-link(href="/users/login") Connexion
         .container
             != messages('message', locals)
             if errors
