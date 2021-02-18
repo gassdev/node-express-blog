@@ -15,8 +15,9 @@ html
                 a.nav-link(href='/')
                   | Accueil 
                   span.sr-only (current)
-              li.nav-item
-                a.nav-link(href='/articles/add') Ajouter un article
+              if user
+                li.nav-item
+                  a.nav-link(href='/articles/add') Ajouter un article
             ul.navbar-nav
               if user
                 li.nav-item
